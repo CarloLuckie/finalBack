@@ -3,15 +3,15 @@ const mongoose = require('mongoose');
 const persianaSchema = mongoose.Schema({
     name: {
         type: String,
-        required: [true, "Please enter your name"]
+        required: [true, "Ingrese su nombre"]
     },
     email: {
         type: String,
-        required: [true, "Please enter your email"]
+        required: [true, "Ingrese su correo"]
     },
     message: {
         type: String,
-        required: [true, "Please enter your message"]
+        required: [true, "Ingrese el mensaje"]
     }
 }, {
     timestamps: true

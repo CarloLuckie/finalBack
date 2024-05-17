@@ -3,18 +3,18 @@ const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
-// Register new user
+// Registar nuevo usuario
 const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password } = req.body;
 
-    // Check if user exists
+    // Checar si el usuario exsite
     const userExists = await User.findOne({ email });
     if (userExists) {
         res.status(400).json({ error: "User already exists" });
         return;
     }
 
-    // Create user
+    // Crear el usuario
     const user = await User.create({
         name,
         email,
@@ -33,11 +33,11 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 });
 
-// Authenticate user
+// Autenticar
 const loginUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
 
-    // Check for user email
+    // Checar el correo del usuario
     const user = await User.findOne({ email });
 
     if (user && (await bcrypt.compare(password, user.password))) {
@@ -52,7 +52,7 @@ const loginUser = asyncHandler(async (req, res) => {
     }
 });
 
-// Generate JWT
+// Generar JWT
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
         expiresIn: '30d',

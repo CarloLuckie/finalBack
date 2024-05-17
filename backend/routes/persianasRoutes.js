@@ -4,7 +4,7 @@ const { getPersianas, createPersiana, updatePersiana, deletePersiana } = require
 const { protect, admin } = require('../middleware/authMiddleware');
 
 router.get('/', protect, admin, getPersianas);
-router.post('/', createPersiana); // No protection for posting messages
+router.post('/', createPersiana); 
 router.put('/:id', protect, admin, updatePersiana);
 router.delete('/:id', protect, admin, deletePersiana);
 
